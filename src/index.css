@@ -26,6 +26,11 @@ li img{
   border-radius:50%;
 }
 
+.flex{
+  display: flex;
+  align-items: center;
+}
+
 .album-list{
   display: flex;
   align-items: center;
@@ -49,6 +54,27 @@ ul li{
   padding: 30px;
   border-radius: 10px;
   background-color: black;
+}
+
+input{
+  display: flex;
+  padding: 10px;
+  border-radius: 5px;
+  width: 50%;
+  gap: 10px;
+}
+
+.spacing{
+  display: flex;
+  gap: 10px;
+}
+
+button{
+  display: flex;
+  padding: 10px;
+  border-radius: 5px;
+  width: fit-content;
+  gap: 10px;
 }
 
 #section-body {

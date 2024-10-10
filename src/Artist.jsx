@@ -1,11 +1,24 @@
 import { useState } from "react";
 import { Albums } from "./Albums";
-import { albums } from "./data";
 import { Gallery } from "./Gallery";
 import { Tracks } from "./Tracks";
+import { AddAlbum } from "./AddAlbum";
+import { myAlbums } from "./data";
 
 export function Artist() {
-    const [selectedAlbum, setSelectedAlbum] = useState(albums[0]);
+
+    const [updatedAlbums, setUpdatedALbums] = useState(myAlbums);
+    const [selectedAlbum, setSelectedAlbum] = useState(updatedAlbums[0]);
+
+    const handleUpdatedAlbums = (album) => {
+        // The issue here is that you're mutating the myAlbums array directly, which doesn't trigger a re-render
+        // because React doesn't detect the change. React checks for state changes using shallow comparisons, so
+        // when the array is mutated in place, React doesn't recognize the array as having changed.
+        const newAlbums = [...updatedAlbums, album]; // Create a new array. 
+        setUpdatedALbums(newAlbums); // Update state with the new array
+        console.log(newAlbums);
+    }
+
 
     function handleSelectedAlbum(album) {
         setSelectedAlbum(album);
@@ -25,9 +38,10 @@ export function Artist() {
                     tracks={selectedAlbum.tracks}
                 />
             </div>
-
+            <AddAlbum onSelect={handleUpdatedAlbums}
+            />
             <Albums
-                albums={albums}
+                albums={updatedAlbums}
                 onSelect={handleSelectedAlbum}
             />
         </section>
